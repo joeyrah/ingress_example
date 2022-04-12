@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+      - {{ .Values.ingress.host }}
+    secretName: {{ .Values.ingress.tls_secret }} # this secret should push to kube Secret
+  ingressClassName: nginx
+  rules:
+  - host: {{ .Values.ingress.host }} # assume name resolution works
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: amazing
+            port:
+              number: {{ .Values.service.port }}
