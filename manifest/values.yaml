@@ -1,8 +1,8 @@
 replicaCount: 2
 
 image:
-  repository: joeyrah/ingress_example
-  tag: v0.0.1
+  repository: joeyrah/joey-rahman-sre-exercise
+  tag: latest
   pullPolicy: Always
 
 resources:
